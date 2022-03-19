@@ -1,0 +1,6 @@
+{
+    "require": {
+        "mhmmdq/ecommerce-api": "^0.2.0",
+        "morilog/jalali": "3.*"
+    }
+}
