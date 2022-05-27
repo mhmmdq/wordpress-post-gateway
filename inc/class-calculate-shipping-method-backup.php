@@ -13,7 +13,7 @@ if ( ! class_exists( 'GateWay_Calculate_Shipping' ) ) {
             $this->method_title  = __( 'حمل نقل با وب سرویس پست' );
             $this->method_description = __( 'محابه نرخ ارسال با وب سرویس پست' ); 
             $this->init();
-        
+            
         }
 
         public function init() {
@@ -56,7 +56,7 @@ if ( ! class_exists( 'GateWay_Calculate_Shipping' ) ) {
         {
             global $wpdb;
             $table_name = $wpdb->prefix . 'gateway_citise';
-            $query = "SELECT * FROM $table_name WHERE state_name = '{$stateName}' AND city_name = '{$cityName}'";
+            $query = "SELECT * FROM $table_name WHERE state_name = '$stateName' AND city_name = '$cityName'";
             $result = $wpdb->get_results($query , ARRAY_A); 
             return $result[0]['city_code'];
         }

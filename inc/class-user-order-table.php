@@ -29,7 +29,7 @@ if( !class_exists( "Mhmmdq_Post_GateWay_Create_Table_On_Order_Details_Page" ) )
                     $store_name = get_user_meta( $store_id ,'nickname' ,true );
                     
                     // get barcode from database
-                    $barcode = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}mhmmdq_gateway_factor WHERE order_id = {$order_id}" , ARRAY_A )[0]['barcode']; 
+                    @$barcode = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}mhmmdq_gateway_factor WHERE order_id = {$order_id}" , ARRAY_A )[0]['barcode']; 
 
                     $order_details[$store_id] = [
                         'order_id' => $order_id,

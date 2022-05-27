@@ -31,7 +31,7 @@ foreach( $order as $store_id => $data ):
             
             if( $data['barcode'] != null )
             {
-                echo "<div class='barcode'> <span style='font-weight: bold;'>".$data['barcode']."</span> <span> <a target='_blank' href='https://tracking.post.ir/' class='button view'>کپی کد و رهگیری مرسوله</a> </span> </div> ";
+                echo "<div class='barcode'> <span style='font-weight: bold;'>".$data['barcode']."</span> <span> <a target='_blank' href='https://tracking.post.ir/' class='button view'>کپی کد و رهگیری</a> </span> </div> ";
             }
             else
             {

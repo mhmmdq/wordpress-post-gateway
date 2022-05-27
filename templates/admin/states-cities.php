@@ -10,6 +10,52 @@
     <h2 class="screen-reader-text">
        
     </h2>
+    <table class="form-table">
+
+        <tr>
+            <th><label for="postalcode">نام استان</label></th>
+            <td>
+                <input type="text" id="state_name"  class="regular-text digcon" /><br />
+                <br>
+                <span class='description'>
+
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <th><label for="postalcode">نام شهر</label></th>
+            <td>
+                <input type="text" id="city_name"  class="regular-text digcon" /><br />
+                <br>
+                <span class='description'>
+
+                </span>
+            </td>
+        </tr>
+        <th>
+            <button type="submit" class="button button-primary" id="gateway_get_city_code"> دریافت کد شهر </button>
+        </th>
+    </table>
+
+    <script>
+        jQuery(document).ready(function($) {
+            $('#gateway_get_city_code').click(function(e) {
+                e.preventDefault();
+                var state_name = $('#state_name').val();
+                var city_name = $('#city_name').val();
+                var data = {
+                    'action': 'gateway_get_city_code',
+                    'state_name': state_name,
+                    'city_name': city_name
+                };
+                $.post(ajaxurl, data, function(response) {
+                    alert('کد شهر : ' + response.data);
+                });
+            });
+        });
+    </script>
+
+
     <ul class="subsubsub">
     </ul>
     <form method="get">

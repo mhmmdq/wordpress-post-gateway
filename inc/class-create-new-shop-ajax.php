@@ -11,11 +11,38 @@ if( !class_exists( "GateWay_Create_New_Shop_Ajax" ) )
         }
 
         public function create_new_shop() {
-            if( $_SERVER['REQUEST_METHOD'] == 'get' ) {
-                echo json_encode([
-                    'status' => 'success',
-                ]);
-        }
+            if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
+                global $GateWay;
+                $_POST['ShopID'] = isset($_POST['ShopID']) ? $_POST['ShopID'] : null;
+                $post = $GateWay->RegisterShop(
+                    $_POST['ShopID'],
+                    $_POST['ShopUsername'],
+                    $_POST['Shopname'],
+                    $_POST['Phone'],
+                    $_POST['PostalCode'],
+                    null , 
+                    null ,
+                    $_POST['ManagerNationalID'],
+                    $_POST['ManagerNationalIDSerial'],
+                    $_POST['ManagerBirthDate'],
+                    $_POST['Mobile'],
+                    null,
+                    null,
+                    null,
+                    $_POST['StartDate'],
+                    $_POST['EndDate'],
+                    null,
+                    $_POST['CityID'],
+                    null,
+                    null,
+                    null,
+                    $_POST['NeedToCollect']
+                );
+                
+                echo json_encode( [ 'status' => 'success' , 'post' => $post ] );
+
+            }
+
         exit;
         }
 

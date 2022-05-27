@@ -54,6 +54,10 @@ if( !class_exists("Mhmmdq_Post_GateWay_Service") ) {
             $GateWay_Code = $wpdb->get_var("SELECT * FROM {$wpdb->prefix}mhmmdq_gateway_factor WHERE order_id = '$order_id'");
 
             if ($GateWay_Code == NULL) {
+				
+				
+
+				// var_dump($this->getCityCode($state_name , $city_name));
 
                 global $GateWay;
                 $GateWayPriceClass = $GateWay->MakePrice(
@@ -80,6 +84,7 @@ if( !class_exists("Mhmmdq_Post_GateWay_Service") ) {
                     $order_name
                 );
 
+				
                 
 
                 $barcode = json_decode($barcode , true);
@@ -128,6 +133,9 @@ if( !class_exists("Mhmmdq_Post_GateWay_Service") ) {
             $date[2] = explode(' ', $date[2]);
             $date[2] = $date[2][0];
             $date = $date[2] . '-' . $date[1] . '-' . $date[0];
+			$country_states = $countries->get_states( "IR" ); 
+            $state_name_v     = $country_states[$vendor['address']['state']];
+			
             new Factor(
                 'ای تحفه',
                 'https://etohfeh.com/wp-content/plugins/woocommerce-delivery-notes/templates/print-order/etohfeh-mini-logo.png',
@@ -135,9 +143,9 @@ if( !class_exists("Mhmmdq_Post_GateWay_Service") ) {
                 'etohfeh.com',
                 'info@etohfeh.com',
                 get_userdata($store_id)->display_name,
+                $state_name_v,
                 $vendor['address']['city'],
-                $vendor['address']['street_2'],
-                null,
+                $vendor['address']['street_1'],
                 $order_id,
                 $order_table , 
                 $customer_name,
@@ -238,7 +246,7 @@ if( !class_exists("Mhmmdq_Post_GateWay_Service") ) {
 
             
 
-            
+           
            
             $vendor = new WP_User($store_id);
             $vendorState = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}gateway_citise WHERE state_name = '$vendor->billing_state' LIMIT 1")[0]->state_code;

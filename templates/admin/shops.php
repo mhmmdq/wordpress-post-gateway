@@ -67,20 +67,20 @@
                 </th>
                 <td class="username column-username has-row-actions column-primary" data-colname="نام کاربری">
                     <strong>
-                        <a href="http://wordpress.test/wp-admin/profile.php?wp_http_referer=%2Fwp-admin%2Fusers.php">
+                        <a href="<?php echo admin_url('admin.php?page=gateway-post-api-shops-add&shop_id=' . $shop['ShopID']);?>">
                             <?php echo $shop['ShopUsername']; ?>
                         </a>
                     </strong>
                     <br>
                     <div class="row-actions">
                         <span class="edit">
-                            <a href="http://wordpress.test/wp-admin/profile.php?wp_http_referer=%2Fwp-admin%2Fusers.php">ویرایش</a> |
+                            <a href="<?php echo admin_url('admin.php?page=gateway-post-api-shops-add&shop_id=' . $shop['ShopID']);?>">ویرایش</a> |
                         </span>
                         <span class="delete">
-                            <a href="#delete">پاک کردن</a> |
+                            <a href="#delete" onclick="alert('حذف فروشگاه توسط شما امکان پذیر نیست')">پاک کردن</a> |
                         </span>
                         <span class="mhmmdq_gateway_post_view">
-                            <a href="http://wordpress.test/author/mhmmdq/">نمایش</a> 
+                            <a href="<?php echo admin_url('admin.php?page=gateway-post-api-shops-add&shop_id=' . $shop['ShopID']);?>">نمایش</a> 
                         </span>
                         
                     </div>
