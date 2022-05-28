@@ -132,7 +132,7 @@ if ( ! class_exists( 'GateWay_Calculate_Shipping' ) ) {
                     foreach($paking_price_range as $packing_price_range){
                         $packing_price_range = explode(':', $packing_price_range);
                         
-                        if( ($_product->get_weight() * $values['quantity']) <= $packing_price_range[0] ){
+                        if( ($weight[$store_id]) <= $packing_price_range[0] ){
                             $packging_price_ratio += $packing_price_range[1];
                             break;
                         }
