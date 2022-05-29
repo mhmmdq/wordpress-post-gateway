@@ -160,11 +160,13 @@ if(isset($_GET['shop_id']) && !empty($_GET['shop_id'])) {
 <th>
     <?php submit_button('افزودن فروشگاه'); ?>
 </th>
-
-
+<th id="post_shop_gateway_resualt" ></th>
 <script>
 
     document.getElementById('submit').addEventListener('click' , function(e) {
+        this.disabled = true;
+        this.value = 'در حال ارسال ...';
+        document.querySelector('#post_shop_gateway_resualt').innerHTML = '<span> تا دریافت نتیجه منتظر بمانید </span>';
         e.preventDefault();
         let $ = (selector) => {
             let elemets = document.querySelectorAll(selector);
@@ -200,7 +202,14 @@ if(isset($_GET['shop_id']) && !empty($_GET['shop_id'])) {
                 'NeedToCollect' : $('#is_need_to_collect').value
             };
             jQuery.post(ajaxurl , data , function(response) {
-                alert('درخواست شما انجام شد نتیجه را در اسرع وقت بررسی کنید');
+                document.querySelector('#submit').disabled = false;
+                document.querySelector('#submit').value = 'افزودن فروشگاه';
+                console.log(response);
+                if(response.status == 'success') {
+                    document.querySelector('#post_shop_gateway_resualt').innerHTML = '<span style="color:green;">'+response.message+'</span>';
+                }else {
+                    document.querySelector('#post_shop_gateway_resualt').innerHTML = '<span style="color:red;">کد خطا ارسالی از سمت پست : '+response.message+'</span>';
+                }
             });
         }
 

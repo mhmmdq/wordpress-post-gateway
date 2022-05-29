@@ -13,33 +13,41 @@ if( !class_exists( "GateWay_Create_New_Shop_Ajax" ) )
         public function create_new_shop() {
             if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
                 global $GateWay;
-                $_POST['ShopID'] = isset($_POST['ShopID']) ? $_POST['ShopID'] : null;
+                $_POST['ShopID'] = isset($_POST['ShopID']) ? $_POST['ShopID'] : "";
                 $post = $GateWay->RegisterShop(
                     $_POST['ShopID'],
                     $_POST['ShopUsername'],
                     $_POST['Shopname'],
                     $_POST['Phone'],
                     $_POST['PostalCode'],
-                    null , 
-                    null ,
+                    "" , 
+                    "" ,
                     $_POST['ManagerNationalID'],
                     $_POST['ManagerNationalIDSerial'],
                     $_POST['ManagerBirthDate'],
                     $_POST['Mobile'],
-                    null,
-                    null,
-                    null,
+                    "",
+                    "",
+                    "",
                     $_POST['StartDate'],
                     $_POST['EndDate'],
-                    null,
+                    "",
                     $_POST['CityID'],
-                    null,
-                    null,
-                    null,
+                    "",
+                    "",
+                    "",
                     $_POST['NeedToCollect']
                 );
-                
-                echo json_encode( [ 'status' => 'success' , 'post' => $post ] );
+                header('Content-Type: application/json');
+                $post = json_decode($post , true);
+                if( isset($post['ShopID']) ) {
+                    echo json_encode( [ 'status' => 'success' , 'message' => 'فروشگاه با موفقیت ویرایش شد.' , 'shop_id' => $post['ShopID'] ] );
+                }
+                else {
+                    echo json_encode( [ 'status' => 'fail' , 'message' => $post['Message']] );
+                }
+
+
 
             }
 
